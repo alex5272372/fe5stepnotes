@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const db = require('./db/');
 const app = express();
 
+app.use('/public', express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
@@ -11,7 +12,7 @@ app.get('/', function(req, res) {
     res.render('pages/index');
 });
 
-const renderCards = async res => {
+/*const renderCards = async res => {
     const cards = await db.getCards();
     res.render('pages/cards', {
         cards
@@ -30,7 +31,7 @@ app.post('/cards', async function(req, res) {
     await db.addCard(card);
 
     await renderCards(res);
-});
+});*/
 
 let port = process.env.PORT;
 if (port === undefined) {
