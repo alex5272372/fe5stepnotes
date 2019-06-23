@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+    <body class="bg-light">
+        <section class="container h-100 d-flex flex-column">
+            <form action="/" method="POST" class="needs-validation d-flex flex-column justify-content-center align-items-center" novalidate>
+                <a href="/" class="close badge align-self-end">x</a>
+                <div class="form-group  text-center col-sm-10">
+                    <label for="noteTheme" class="badge badge-primary text-wrap">Theme of note</label>
+                    <input type="test" class="form-control" name="noteTheme" id="noteTheme" placeholder="Some theme" value=<%= viewNote.themeNote %>  required>
+                    <div class="invalid-feedback">
+                        Please provide a valid theme.
+                    </div>
+                </div>
+                <div class="form-group text-center col-sm-10">
+                    <label for="noteTextarea" class="badge badge-primary text-wrap">Your comment</label>
+                    <textarea class="form-control" name="noteTextarea" id="noteTextarea" rows="10" placeholder="Some text"><%= viewNote.textNote %></textarea>
+                </div>
+                <div class="form-button__note d-flex">
+                    <button type="submit" class="btn btn-outline-primary" id="noteEditBtn" data-id=<%=viewNote._id %>>Edit</button>
+                    <button type="submit" class="btn btn-outline-danger" id="noteDelBtn" data-id=<%=viewNote._id %>>Delete</button>
+                </div>
+            </form>
+        </section>
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+</body>
+</html>
