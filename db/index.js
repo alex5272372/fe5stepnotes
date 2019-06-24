@@ -1,19 +1,17 @@
 const MongoClient = require('mongodb').MongoClient;
 const {uri, db} = require('./config');
 
-const addNote = async note => {
+const addNote = async newNote => {
     try {
         const client = new MongoClient(uri, { useNewUrlParser: true });
         await client.connect();
-
-        const collection = client.db(db).collection('notes');
-        await collection.insertOne(note);
-
-        console.log("1 document inserted");
+        const usersCollection = await client.db(db).collection("notes");
+        await usersCollection.insertOne(newNote);
+        console.log("create new notes: ", newNote);
         client.close();
     } catch (e) {
         throw e;
-    }
+    };
 };
 
 const getNotes = async () => {
