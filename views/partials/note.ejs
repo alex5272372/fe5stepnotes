@@ -2,24 +2,23 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="noteModalTitle">Modal title</h5>
+                <h5 class="modal-title" id="noteModalTitle">Create new note</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <section class="container h-100">
-                    <form action="/note" method="POST" class="notes-form needs-validation d-flex flex-column justify-content-center align-items-center" novalidate>
+                    <form action="/notes" method="POST" class="needs-validation d-flex flex-column justify-content-center align-items-center" novalidate>
                         <div class="form-group col-sm-8 text-center">
-                            <label for="notesTheme" class="badge badge-primary text-wrap">Theme of note</label>
-
+                            <label for="noteTheme" class="badge badge-primary text-wrap">Theme of note</label>
                             <input type="test" class="form-control" name="noteTheme" id="noteTheme" placeholder="Some theme" required>
                             <div class="invalid-feedback">
                                 Please provide a valid theme.
                             </div>
                         </div>
                         <div class="form-group col-sm-10 text-center">
-                            <label for="notesTextarea" class="badge badge-primary text-wrap">Your comment</label>
+                            <label for="noteTextarea" class="badge badge-primary text-wrap">Your comment</label>
                             <textarea class="form-control" name="noteTextarea" id="noteTextarea" rows="10" placeholder="Some text"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Create note</button>
