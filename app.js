@@ -12,26 +12,41 @@ app.get('/', function(req, res) {
     res.render('pages/index');
 });
 
-/*const renderCards = async res => {
-    const cards = await db.getCards();
-    res.render('pages/cards', {
-        cards
-    });
-};
-
-app.get('/cards', async function(req, res) {
-    await renderCards(res);
+app.post('/notes', async function(req, res) {
+    if(req.body.noteTheme){
+        await db.addNote({
+            themeNote: req.body.noteTheme,
+            textNote: req.body.noteTextarea
+        });
+    }
+    res.redirect('/');
 });
 
-app.post('/cards', async function(req, res) {
-    const card = {
-        name: req.body.name,
-        text: req.body.text
-    };
-    await db.addCard(card);
-
-    await renderCards(res);
-});*/
+//this card view
+app.get('/notes/:id', async function(req,res) {
+    const viewNote = await db.getNote(req.params.id);
+    await res.render('pages/noteEdit',{viewNote});
+});
+//delete note
+app.delete('/api/notes/:id', function(req, res) {
+    db.delNote(req.params.id)
+    .then(() => {
+        res.send('Success')
+    })
+    .catch(err => {
+        res.status.json({ err: err });
+    });
+});
+//edit note
+app.put('/api/notes/:id', function(req, res) {
+    db.editNote(req.params.id,req.body.noteTheme,req.body.noteTextarea)
+    .then(() => {
+        res.send('Success')
+    })
+    .catch(err => {
+        res.status.json({ err: err });
+    });
+});
 
 app.post('/note', async function(req, res) {
     console.log("in post note")
