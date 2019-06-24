@@ -48,6 +48,17 @@ app.put('/api/notes/:id', function(req, res) {
     });
 });
 
+app.post('/note', async function(req, res) {
+    console.log("in post note")
+    if(req.body.noteTheme){
+        await db.addNote({
+            themeNotes: req.body.noteTheme,
+            textNotes: req.body.noteTextarea
+        });
+    }
+    res.redirect('/');
+});
+
 let port = process.env.PORT;
 if (port === undefined) {
     port = 5000;

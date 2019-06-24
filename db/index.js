@@ -23,7 +23,6 @@ const getNote = async (id) => {
 
         const noteCollection = await client.db(db).collection("notes");
         result = await noteCollection.findOne({"_id":ObjectId(id)});
-
         client.close();
         return result;
     } catch (e) {

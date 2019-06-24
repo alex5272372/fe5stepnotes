@@ -16,6 +16,7 @@
       });
     }, false);
 })();
+
 //ajax for DEL
 $('.form-button__note').on('click', '#noteDelBtn', function(event) {
     event.preventDefault();
@@ -31,6 +32,7 @@ $('.form-button__note').on('click', '#noteDelBtn', function(event) {
 		}
 	});
 });
+
 //ajax for EDIT
 $('.form-button__note').on('click', '#noteEditBtn', function(event) {
     event.preventDefault();
@@ -49,4 +51,7 @@ $('.form-button__note').on('click', '#noteEditBtn', function(event) {
 		  console.log(err);
 		}
 	});
+
+$('#listModal').on('show.bs.modal', function (e) {
+    console.log('Modal displayed');
 });
