@@ -8,8 +8,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 
-app.get('/', function(req, res) {
-    res.render('pages/index');
+app.get('/', async function(req, res) {
+    const notes = await db.getNotes();
+    res.render('pages/index', {
+        notes
+    });
+});
+
+app.get('/note', async function(req,res) {
+    console.log('yes');
 });
 
 app.post('/notes', async function(req, res) {
@@ -27,6 +34,7 @@ app.get('/notes/:id', async function(req,res) {
     const viewNote = await db.getNote(req.params.id);
     await res.render('pages/noteEdit',{viewNote});
 });
+
 //delete note
 app.delete('/api/notes/:id', function(req, res) {
     db.delNote(req.params.id)
