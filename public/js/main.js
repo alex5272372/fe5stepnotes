@@ -16,6 +16,7 @@
       });
     }, false);
 })();
+
 //ajax for DEL
 $('.form-button__note').on('click', '#noteDelBtn', function(event) {
     event.preventDefault();
@@ -31,6 +32,7 @@ $('.form-button__note').on('click', '#noteDelBtn', function(event) {
 		}
 	});
 });
+
 //ajax for EDIT
 $('.form-button__note').on('click', '#noteEditBtn', function(event) {
     event.preventDefault();
@@ -48,8 +50,8 @@ $('.form-button__note').on('click', '#noteEditBtn', function(event) {
 		error: function(err){
 		  console.log(err);
 		}
+	});
 });
-
 $('.note').click(function () {
 	$.getJSON(`/notes/${this.id}`, function(json) {
 		$('#themeNote')[0].value = json.themeNote;
@@ -138,7 +140,6 @@ $('#addList').click(function () {
 				}
 			]
 			/!*itemsList: Array.prototype.forEach.call($('#itemsList>.input-group'), function(groupItem) {
-
 			})*!/
 		}),
 		success: function(res){
