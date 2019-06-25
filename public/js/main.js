@@ -52,10 +52,14 @@ $('.form-button__note').on('click', '#noteEditBtn', function(event) {
 		}
 	});
 });
+
 $('.note').click(function () {
-	$.getJSON(`/notes/${this.id}`, function(json) {
+	const idNote = this.id;
+	$.getJSON('/notes/'+idNote, function(json) {
 		$('#themeNote')[0].value = json.themeNote;
 		$('#textNote')[0].value = json.textNote;
+		$('#noteDelBtn').attr('data-id',idNote);
+		$('#noteEditBtn').attr('data-id',idNote);
 		$('#noteModal').modal('show');
 	});
 });
