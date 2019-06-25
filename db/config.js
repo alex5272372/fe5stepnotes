@@ -1,4 +1,4 @@
 module.exports = {
-    uri: 'mongodb+srv://admin:5350780@mycluster-ui84d.mongodb.net/test?retryWrites=true&w=majority',
+    uri: 'mongodb+srv://fe5student:Secur567@cluster0-cbtir.gcp.mongodb.net/test?retryWrites=true&w=majority',
     db: 'cards'
 };

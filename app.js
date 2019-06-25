@@ -8,8 +8,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 
-app.get('/', function(req, res) {
-    res.render('pages/index');
+app.get('/', async function(req, res) {
+    const notes = await db.getNotes();
+    res.render('pages/index', {
+        notes
+    });
+});
+
+app.get('/note', async function(req,res) {
+    console.log('yes');
 });
 
 app.post('/notes', async function(req, res) {
@@ -21,8 +28,7 @@ app.post('/notes', async function(req, res) {
     }
     res.redirect('/');
 });
-
-//this card view
+//this note view
 app.get('/notes/:id', async function(req,res) {
     const viewNote = await db.getNote(req.params.id);
     await res.render('pages/noteEdit',{viewNote});
@@ -47,7 +53,7 @@ app.put('/api/notes/:id', function(req, res) {
         res.status.json({ err: err });
     });
 });
-
+//add new note
 app.post('/note', async function(req, res) {
     console.log("in post note")
     if(req.body.noteTheme){

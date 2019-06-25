@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="row">
+        <ul class="nav navbar-nav">
+            <li><a href="/notes/5d0fbb7fcde3001af8927367">Имитация перехода на уже созданую заметку</a></li>
+        </ul>
+    </div>
+
+    <% notes.forEach(function(note) { %>
+    <div class="row note" id="<%= note._id %>">
+        <div class="m-1 p-2 border border-primary rounded">
+            <h3><%= note.themeNote %></h3>
+            <p><%= note.textNote %></p>
+        </div>
+    </div>
+    <% }); %>
+</div>

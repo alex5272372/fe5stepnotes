@@ -1,4 +1,4 @@
-//for validation form
+//for validation form - boodtrap4
 (function() {
     'use strict';
     window.addEventListener('load', function() {
@@ -50,8 +50,15 @@ $('.form-button__note').on('click', '#noteEditBtn', function(event) {
 		error: function(err){
 		  console.log(err);
 		}
-	});
+});
 
 $('#listModal').on('show.bs.modal', function (e) {
     console.log('Modal displayed');
 });
+
+$('.note').click(function () {
+	$.getJSON('/note', this._id, function(json) {
+		console.log(json);
+	});
+});
+
