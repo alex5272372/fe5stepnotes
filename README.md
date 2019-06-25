@@ -78,9 +78,10 @@ Email	diagcome@gmail.com
 
 #### Компоненты:
 1. Buttons
-2. Input group
-3. Card
-4. Modal
+2. List group
+3. Input group
+4. Card
+5. Modal
 
 ### Шаблонизатор: EJS
 [Документация](https://ejs.co/#about)

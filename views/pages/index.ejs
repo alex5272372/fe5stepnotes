@@ -5,21 +5,14 @@
 </head>
 <body>
 
-<header>
+<div class="container">
     <% include ../partials/header %>
-</header>
-
-<main>
-    <ul class="nav navbar-nav">
-        <li><a href="/notes/5d0fbb7fcde3001af8927367">Имитация перехода на уже созданую заметку</a></li>  <!-- просьба оставить до момента пока переход с карточке не будет возможен -->
-    </ul>
     <% include ../partials/main %>
-    <% include ../partials/note %>
-    <% include ../partials/list %>
-</main>
-<footer>
-    <% include ../partials/footer %>
-</footer>
+</div>
+
+<% include ../partials/note %>
+<% include ../partials/list %>
+<% include ../partials/footer %>
 
 </body>
 </html>
