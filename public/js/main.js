@@ -1,4 +1,4 @@
-//for validation form
+//for validation form - boodtrap4
 (function() {
     'use strict';
     window.addEventListener('load', function() {
