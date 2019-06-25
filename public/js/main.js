@@ -48,7 +48,6 @@ $('.form-button__note').on('click', '#noteEditBtn', function(event) {
 		error: function(err){
 		  console.log(err);
 		}
-	});
 });
 
 $('.note').click(function () {
