@@ -16,7 +16,6 @@
       });
     }, false);
 })();
-
 //ajax for DEL
 $('.form-button__note').on('click', '#noteDelBtn', function(event) {
     event.preventDefault();
@@ -32,7 +31,6 @@ $('.form-button__note').on('click', '#noteDelBtn', function(event) {
 		}
 	});
 });
-
 //ajax for EDIT
 $('.form-button__note').on('click', '#noteEditBtn', function(event) {
     event.preventDefault();
@@ -41,8 +39,8 @@ $('.form-button__note').on('click', '#noteEditBtn', function(event) {
 		type:'PUT',
 		url: '/api/notes/' + id,
 		data: {
-			noteTheme: $('#noteTheme').val(),
-			noteTextarea: $('#noteTextarea').val()
+			themeNote: $('#themeNote').val(),
+			textNote: $('#textNote').val()
 		},
 		success: function(response){
 		  	window.location.href='/';
