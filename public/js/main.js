@@ -49,7 +49,7 @@ $('#form-button__note').on('click', '#noteDelBtn', function(event) {
 });
 
 $('.note').click(function () {
-	$('#form-button__note').show();
+	$('#form-button__note').css({ display: "flex" });
 	const idNote = this.id;
 	$.getJSON('/notes/'+idNote, function(json) {
 		$('#themeNote')[0].value = json.themeNote;
