@@ -71,10 +71,10 @@ const appendItem = function(index) {
 				<div class="input-group mb-2">
 				    <div class="input-group-prepend">
 				        <div class="input-group-text">
-				            <input type="checkbox" data-id="checkItem${index}">
+				            <input type="checkbox" id="checkItem${index}">
 				        </div>
 				    </div>
-				    <input type="text" class="form-control" data-id="textItem${index}">
+				    <input type="text" class="form-control" id="textItem${index}">
 				</div>`);
 };
 
@@ -109,10 +109,15 @@ $('#listModal').on('show.bs.modal', function (e) {
 	}
 }).on('hidden.bs.modal', function (e) {
 	$('#itemsList>.input-group:nth-child(n+2)').remove();
+
 	$('#addList').show();
 	$('#editList').show();
 	$('#delList').show();
+
 	$('#listModal>.modal-dialog>.modal-content').attr('data-id', '');
+	$('#themeList')[0].value = '';
+	$('#checkItem0')[0].checked = false;
+	$('#textItem0')[0].value = '';
 });
 
 $('#addItem').click(function () {
