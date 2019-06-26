@@ -7,10 +7,10 @@ const addNote = async newNote => {
         const client = new MongoClient(uri, { useNewUrlParser: true });
         await client.connect();
 
-        const collection = await client.db(db).collection("notes");
-        await collection.insertOne(newNote);
-        client.close();
+        const noteCollection = await client.db(db).collection("notes");
+        await noteCollection.insertOne(newNote);
 
+        client.close();
     } catch (e) {
         throw e;
     };
@@ -32,17 +32,16 @@ const addList = async list => {
     }
 };
 
-
-const getNote = async (id) => {
+const getNote = async id => {
     try {
         const client = new MongoClient(uri, { useNewUrlParser: true });
         await client.connect();
 
-        const collection = await client.db(db).collection("notes");
-        result = await collection.findOne({"_id":ObjectId(id)});
+        const noteCollection = await client.db(db).collection("notes");
+        result = await noteCollection.findOne({"_id":ObjectId(id)});
         client.close();
-        return result;
 
+        return result;
     } catch (e) {
         throw e;
     };
@@ -93,13 +92,14 @@ const getLists = async () => {
     }
 };
 
-const editNote = async (id, theme, text) => {
+const editNote = async (id,theme,text) => {
     try {
         const client = new MongoClient(uri, { useNewUrlParser: true });
         await client.connect();
+        const newvalues = { $set: {"themeNote": theme, "textNote": text } };
 
-        const collection = await client.db(db).collection("notes");
-        await collection.updateOne({"_id": ObjectId(id)}, {$set: {"themeNote": theme, "textNote": text}});
+        const noteCollection = await client.db(db).collection("notes");
+        await noteCollection.updateOne({"_id":ObjectId(id)},newvalues);
         client.close();
 
     } catch (e) {
@@ -121,15 +121,14 @@ const editList = async (id, list) => {
     };
 };
 
-const delNote = async (id) => {
+const delNote = async id => {
     try {
         const client = new MongoClient(uri, { useNewUrlParser: true });
         await client.connect();
 
-        const collection = await client.db(db).collection("notes");
-        // await collection.deleteOne({"_id": ObjectId(id)});  //нужно розкомитить когда будет переход из карточки
+        const noteCollection = await client.db(db).collection("notes");
+        // await noteCollection.deleteOne({"_id":ObjectId(id)});  //нужно розкомитить когда будет переход из карточки
         client.close();
-
     } catch (e) {
         throw e;
     };
