@@ -21,15 +21,15 @@ const addList = async list => {
         const client = new MongoClient(uri, { useNewUrlParser: true });
         await client.connect();
 
-        const collection = client.db(db).collection('lists');
-        await collection.insertOne(list);
+        const listCollection = client.db(db).collection('lists');
+        await listCollection.insertOne(list);
 
         console.log("1 document inserted");
         client.close();
 
     } catch (e) {
         throw e;
-    }
+    };
 };
 
 const getNote = async id => {
@@ -52,8 +52,8 @@ const getList = async (id) => {
         const client = new MongoClient(uri, { useNewUrlParser: true });
         await client.connect();
 
-        const collection = await client.db(db).collection("lists");
-        result = await collection.findOne({"_id": ObjectId(id)});
+        const listCollection = await client.db(db).collection("lists");
+        result = await listCollection.findOne({"_id": ObjectId(id)});
         client.close();
         return result;
 
@@ -82,8 +82,8 @@ const getLists = async () => {
         const client = new MongoClient(uri, { useNewUrlParser: true });
         await client.connect();
 
-        const collection = client.db(db).collection('lists');
-        result = await collection.find({}).toArray();
+        const listCollection = client.db(db).collection('lists');
+        result = await listCollection.find({}).toArray();
 
         client.close();
         return result;
@@ -112,8 +112,8 @@ const editList = async (id, list) => {
         const client = new MongoClient(uri, { useNewUrlParser: true });
         await client.connect();
 
-        const collection = await client.db(db).collection("notes");
-        await collection.updateOne({"_id": ObjectId(id)}, {$set: list});
+        const listCollection = await client.db(db).collection("notes");
+        await listCollection.updateOne({"_id": ObjectId(id)}, {$set: list});
         client.close();
 
     } catch (e) {
@@ -139,8 +139,8 @@ const delList = async (id) => {
         const client = new MongoClient(uri, { useNewUrlParser: true });
         await client.connect();
 
-        const collection = await client.db(db).collection("lists");
-        await collection.deleteOne({"_id": ObjectId(id)});
+        const listCollection = await client.db(db).collection("lists");
+        await listCollection.deleteOne({"_id": ObjectId(id)});
         client.close();
 
     } catch (e) {

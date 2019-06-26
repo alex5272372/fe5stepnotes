@@ -1,6 +1,6 @@
 <div class="row">
     <% notes.forEach(function(note) { %>
-        <div class="card w-100 m-2 border-primary note" id="<%= note._id %>">
+        <div class="card w-100 m-2 border-primary note" data-id="<%= note._id %>">
             <div class="card-body">
                 <h5 class="card-title"><%= note.themeNote %></h5>
                 <p class="card-text"><%= note.textNote %></p>
@@ -9,7 +9,7 @@
     <% }); %>
 
     <% lists.forEach(function(list) { %>
-        <div class="card w-100 m-2 border-primary list" id="<%= list._id %>">
+        <div class="card w-100 m-2 border-primary list" data-id="<%= list._id %>">
             <div class="card-header">
                 <%= list.themeList %>
             </div>
