@@ -6,11 +6,6 @@ const addNote = async newNote => {
     try {
         const client = new MongoClient(uri, { useNewUrlParser: true });
         await client.connect();
-<<<<<<< HEAD
-        const usersCollection = await client.db(db).collection("notes");
-        await usersCollection.insertOne(newNote);
-        console.log("create new notes: ", newNote);
-=======
 
         const collection = await client.db(db).collection("notes");
         await collection.insertOne(newNote);
@@ -30,7 +25,6 @@ const addList = async list => {
         await collection.insertOne(list);
 
         console.log("1 document inserted");
->>>>>>> master
         client.close();
 
     } catch (e) {
