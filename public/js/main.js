@@ -74,9 +74,9 @@ const appendItem = function(index) {
 };
 
 $('.list').click(function () {
-	let id = this.id;
+	let idList = $(this).attr('data-id');
 
-	$.getJSON(`/lists/${id}`, function(json) {
+	$.getJSON(`/lists/${idList}`, function(json) {
 		$('#themeList')[0].value = json.themeList;
 
 		if (json.itemsList.length > 0) {
@@ -90,13 +90,13 @@ $('.list').click(function () {
 			$(`#textItem${index}`)[0].value = json.itemsList[index].itemText;
 		}
 
-		$('#listModal>.modal-dialog>.modal-content')[0].id = id;
+		$('#listModal>.modal-dialog>.modal-content').attr('data-id', idList);
 		$('#listModal').modal('show');
 	});
 });
 
 $('#listModal').on('show.bs.modal', function (e) {
-	if ($('#listModal>.modal-dialog>.modal-content')[0].id.length) {
+	if ($('#listModal>.modal-dialog>.modal-content').attr('data-id').length) {
 		$('#addList').hide();
 	} else {
 		$('#editList').hide();
@@ -104,10 +104,15 @@ $('#listModal').on('show.bs.modal', function (e) {
 	}
 }).on('hidden.bs.modal', function (e) {
 	$('#itemsList>.input-group:nth-child(n+2)').remove();
+
 	$('#addList').show();
 	$('#editList').show();
 	$('#delList').show();
-	$('#listModal>.modal-dialog>.modal-content')[0].id = '';
+
+	$('#listModal>.modal-dialog>.modal-content').attr('data-id', '');
+	$('#themeList')[0].value = '';
+	$('#checkItem0')[0].checked = false;
+	$('#textItem0')[0].value = '';
 });
 
 $('#addItem').click(function () {
