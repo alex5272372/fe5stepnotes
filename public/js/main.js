@@ -68,17 +68,17 @@ const appendItem = function(index) {
 				<div class="input-group mb-2">
 				    <div class="input-group-prepend">
 				        <div class="input-group-text">
-				            <input type="checkbox" id="checkItem${index}">
+				            <input type="checkbox" data-id="checkItem${index}">
 				        </div>
 				    </div>
-				    <input type="text" class="form-control" id="textItem${index}">
+				    <input type="text" class="form-control" data-id="textItem${index}">
 				</div>`);
 };
 
 $('.list').click(function () {
-	let id = this.id;
+	let idList = this.idList;
 
-	$.getJSON(`/lists/${id}`, function(json) {
+	$.getJSON(`/lists/${idList}`, function(json) {
 		$('#themeList')[0].value = json.themeList;
 
 		if (json.itemsList.length > 0) {
@@ -92,13 +92,13 @@ $('.list').click(function () {
 			$(`#textItem${index}`)[0].value = json.itemsList[index].itemText;
 		}
 
-		$('#listModal>.modal-dialog>.modal-content')[0].id = id;
+		$('#listModal>.modal-dialog>.modal-content')[0].idList = idList;
 		$('#listModal').modal('show');
 	});
 });
 
 $('#listModal').on('show.bs.modal', function (e) {
-	if ($('#listModal>.modal-dialog>.modal-content')[0].id.length) {
+	if ($('#listModal>.modal-dialog>.modal-content')[0].idList.length) {
 		$('#addList').hide();
 	} else {
 		$('#editList').hide();
@@ -109,7 +109,7 @@ $('#listModal').on('show.bs.modal', function (e) {
 	$('#addList').show();
 	$('#editList').show();
 	$('#delList').show();
-	$('#listModal>.modal-dialog>.modal-content')[0].id = '';
+	$('#listModal>.modal-dialog>.modal-content')[0].idList = '';
 });
 
 $('#addItem').click(function () {
