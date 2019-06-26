@@ -1,13 +1,16 @@
 <div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-labelledby="listModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="listModalTitle">Modal title</h5>
+        <div class="modal-content border-primary">
+
+            <div class="modal-header border-primary">
+                <i class="fas fa-list fa-2x text-primary"></i>
+                <h5 class="modal-title ml-3" id="listModalTitle">List details</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
+<<<<<<< HEAD
             <div class="modal-body">
                 <section class="container h-100">
                     <form action="/note" method="POST" class="notes-form needs-validation d-flex flex-column justify-content-center align-items-center" novalidate>
@@ -41,6 +44,45 @@
                         <button type="submit" class="btn btn-primary">Create list</button>
                     </form>
                 </section>
+=======
+            <div class="modal-body border-primary">
+                <label for="themeList" class="badge badge-primary text-wrap">Theme of list</label>
+                <input type="text" class="form-control" name="themeList" id="themeList" placeholder="Some theme" required>
+
+                <label for="itemsList" class="badge badge-primary text-wrap">Items of list</label>
+                <div id="itemsList">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" id="checkItem0">
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" id="textItem0">
+                     </div>
+                </div>
+                <button type="button" class="btn btn-primary" id="addItem">
+                    <i class="fas fa-plus"></i>
+                </button>
+                <button type="button" class="btn btn-primary" id="delItem">
+                    <i class="fas fa-minus"></i>
+                </button>
             </div>
+
+            <div class="modal-footer border-primary">
+                <button type="button" class="btn btn-primary" id="addList">
+                    <i class="fas fa-plus"></i>
+                    Create list
+                </button>
+                <button type="button" class="btn btn-primary" id="editList">
+                    <i class="fas fa-check"></i>
+                    Save list
+                </button>
+                <button type="button" class="btn btn-secondary" id="delList">
+                    <i class="fas fa-times"></i>
+                    Delete list
+                </button>
+>>>>>>> master
+            </div>
+
         </div>
     </div>

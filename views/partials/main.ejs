@@ -1,0 +1,29 @@
+<div class="row">
+    <ul class="nav navbar-nav">
+        <li><a href="/notes/5d0fbb7fcde3001af8927367">Имитация перехода на уже созданую заметку</a></li>
+    </ul>
+</div>
+
+<div class="row">
+    <% notes.forEach(function(note) { %>
+        <div class="card w-100 m-2 border-primary note" id="<%= note._id %>">
+            <div class="card-body">
+                <h5 class="card-title"><%= note.themeNote %></h5>
+                <p class="card-text"><%= note.textNote %></p>
+            </div>
+        </div>
+    <% }); %>
+
+    <% lists.forEach(function(list) { %>
+        <div class="card w-100 m-2 border-primary list" id="<%= list._id %>">
+            <div class="card-header">
+                <%= list.themeList %>
+            </div>
+            <ul class="list-group list-group-flush">
+                <% list.itemsList.forEach(function(item) { %>
+                    <li class="list-group-item"><%= item.itemText %></li>
+                <% }); %>
+            </ul>
+        </div>
+    <% }); %>
+</div>
