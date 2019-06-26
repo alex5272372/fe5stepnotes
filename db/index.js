@@ -127,7 +127,7 @@ const delNote = async id => {
         await client.connect();
 
         const noteCollection = await client.db(db).collection("notes");
-        // await noteCollection.deleteOne({"_id":ObjectId(id)});  //нужно розкомитить когда будет переход из карточки
+        await noteCollection.deleteOne({"_id":ObjectId(id)});
         client.close();
     } catch (e) {
         throw e;
