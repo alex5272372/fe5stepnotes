@@ -41,8 +41,8 @@ $('.form-button__note').on('click', '#noteEditBtn', function(event) {
 		type:'PUT',
 		url: '/api/notes/' + id,
 		data: {
-			noteTheme: $('#noteTheme').val(),
-			noteTextarea: $('#noteTextarea').val()
+			themeNote: $('#themeNote').val(),
+			textNote: $('#textNote').val()
 		},
 		success: function(response){
 		  	window.location.href='/';
@@ -54,9 +54,12 @@ $('.form-button__note').on('click', '#noteEditBtn', function(event) {
 });
 
 $('.note').click(function () {
-	$.getJSON(`/notes/${$(this).attr('data-id')}`, function(json) {
+	const idNote = $(this).attr('data-id');
+	$.getJSON('/notes/'+idNote, function(json) {
 		$('#themeNote')[0].value = json.themeNote;
 		$('#textNote')[0].value = json.textNote;
+		$('#noteDelBtn').attr('data-id',idNote);
+		$('#noteEditBtn').attr('data-id',idNote);
 		$('#noteModal').modal('show');
 	});
 });
@@ -141,7 +144,6 @@ $('#addList').click(function () {
 				}
 			]
 			/!*itemsList: Array.prototype.forEach.call($('#itemsList>.input-group'), function(groupItem) {
-
 			})*!/
 		}),
 		success: function(res){

@@ -22,22 +22,20 @@ app.get('/', async function(req, res) {
     renderMainPage(res);
 });
 
-//this card view
+//this note view
 app.get('/notes/:id', async function(req,res) {
-    const viewNote = await db.getNote(req.params.id);
-    // await res.render('pages/noteEdit',{viewNote});
-    res.json(viewNote);
+    res.json(await db.getNote(req.params.id));
 });
 
 app.get('/lists/:id', async function(req,res) {
     res.json(await db.getList(req.params.id));
 });
-
+//add new note
 app.post('/notes', async function(req, res) {
-    if(req.body.noteTheme){
+    if(req.body.themeNote){
         await db.addNote({
-            themeNote: req.body.noteTheme,
-            textNote: req.body.noteTextarea
+            themeNote: req.body.themeNote,
+            textNote: req.body.textNote
         });
     }
     res.redirect('/');
@@ -47,10 +45,9 @@ app.post('/lists', async function(req, res) {
     await db.addList(req.body);
     renderMainPage(res);
 });
-
 //edit note
 app.put('/api/notes/:id', function(req, res) {
-    db.editNote(req.params.id,req.body.noteTheme,req.body.noteTextarea)
+    db.editNote(req.params.id,req.body.themeNote,req.body.textNote)
     .then(() => {
         res.send('Success')
     })
@@ -68,7 +65,6 @@ app.put('/api/lists/:id', function(req, res) {
             res.status.json({ err: err });
         });
 });
-
 //delete note
 app.delete('/api/notes/:id', function(req, res) {
     db.delNote(req.params.id)
