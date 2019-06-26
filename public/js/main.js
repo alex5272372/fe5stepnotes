@@ -54,7 +54,7 @@ $('.form-button__note').on('click', '#noteEditBtn', function(event) {
 });
 
 $('.note').click(function () {
-	$.getJSON(`/notes/${this.id}`, function(json) {
+	$.getJSON(`/notes/${$(this).attr('data-id')}`, function(json) {
 		$('#themeNote')[0].value = json.themeNote;
 		$('#textNote')[0].value = json.textNote;
 		$('#noteModal').modal('show');
@@ -76,7 +76,7 @@ const appendItem = function(index) {
 };
 
 $('.list').click(function () {
-	let idList = this.idList;
+	let idList = $(this).attr('data-id');
 
 	$.getJSON(`/lists/${idList}`, function(json) {
 		$('#themeList')[0].value = json.themeList;
@@ -92,13 +92,13 @@ $('.list').click(function () {
 			$(`#textItem${index}`)[0].value = json.itemsList[index].itemText;
 		}
 
-		$('#listModal>.modal-dialog>.modal-content')[0].idList = idList;
+		$('#listModal>.modal-dialog>.modal-content').attr('data-id', idList);
 		$('#listModal').modal('show');
 	});
 });
 
 $('#listModal').on('show.bs.modal', function (e) {
-	if ($('#listModal>.modal-dialog>.modal-content')[0].idList.length) {
+	if ($('#listModal>.modal-dialog>.modal-content').attr('data-id').length) {
 		$('#addList').hide();
 	} else {
 		$('#editList').hide();
@@ -109,7 +109,7 @@ $('#listModal').on('show.bs.modal', function (e) {
 	$('#addList').show();
 	$('#editList').show();
 	$('#delList').show();
-	$('#listModal>.modal-dialog>.modal-content')[0].idList = '';
+	$('#listModal>.modal-dialog>.modal-content').attr('data-id', '');
 });
 
 $('#addItem').click(function () {

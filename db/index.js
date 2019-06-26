@@ -21,7 +21,7 @@ const addList = async list => {
         const client = new MongoClient(uri, { useNewUrlParser: true });
         await client.connect();
 
-        const listCollection = client.db(db).listCollection('lists');
+        const listCollection = client.db(db).сollection('lists');
         await listCollection.insertOne(list);
 
         console.log("1 document inserted");
@@ -53,7 +53,7 @@ const getList = async (id) => {
         const client = new MongoClient(uri, { useNewUrlParser: true });
         await client.connect();
 
-        const listCollection = await client.db(db).listCollection("lists");
+        const listCollection = await client.db(db).сollection("lists");
         result = await listCollection.findOne({"_id": ObjectId(id)});
         client.close();
         return result;
@@ -83,7 +83,7 @@ const getLists = async () => {
         const client = new MongoClient(uri, { useNewUrlParser: true });
         await client.connect();
 
-        const listCollection = client.db(db).listCollection('lists');
+        const listCollection = client.db(db).сollection('lists');
         result = await listCollection.find({}).toArray();
 
         client.close();
@@ -112,7 +112,7 @@ const editList = async (id, list) => {
         const client = new MongoClient(uri, { useNewUrlParser: true });
         await client.connect();
 
-        const listCollection = await client.db(db).listCollection("notes");
+        const listCollection = await client.db(db).сollection("notes");
         await listCollection.updateOne({"_id": ObjectId(id)}, {$set: list});
         client.close();
 
