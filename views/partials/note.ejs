@@ -1,28 +1,28 @@
 <div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="noteModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content border-primary">
-            <div class="modal-header border-primary">
-                <h5 class="modal-title" id="noteModalTitle">Note details</h5>
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <img src="/public/img/note.png" class="img-responsive" alt="note">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body border-primary">
+            <div class="modal-body bg-light">
                 <section class="container h-100">
                     <form action="/notes" method="POST" class="needs-validation d-flex flex-column justify-content-center align-items-center" novalidate>
                         <div class="form-group col-sm-8 text-center">
-                            <label for="themeNote" class="badge badge-primary text-wrap pt-sm-2 pb-sm-2">Theme of note</label>
+                            <label for="themeNote" class="badge badge-primary text-wrap pt-sm-1 pb-sm-1" style="font-size: 1rem">Theme of note</label>
                             <input type="text" class="form-control" name="themeNote" id="themeNote" placeholder="Some theme" required>
                             <div class="invalid-feedback">
                                 Please provide a valid theme.
                             </div>
                         </div>
                         <div class="form-group col-sm-10 text-center">
-                            <label for="textNote" class="badge badge-primary text-wrap pt-sm-2 pb-sm-2">Your comment</label>
+                            <label for="textNote" class="badge badge-primary text-wrap pt-sm-1 pb-sm-1" style="font-size: 1rem">Your comment</label>
                             <textarea class="form-control" name="textNote" id="textNote" rows="10" placeholder="Some text"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Create note</button>
-                        <div class="d-none" id="form-button__note" data-id="">
+                        <button type="submit" id="noteCreate" class="btn btn-primary">Create note</button>
+                        <div class="" id="form-button__note" data-id="">
                             <button type="submit" class="btn btn-outline-primary mr-1" id="noteEditBtn">Edit</button>
                             <button type="submit" class="btn btn-outline-danger ml-1" id="noteDelBtn">Delete</button>
                         </div>

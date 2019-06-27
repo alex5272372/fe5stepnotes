@@ -49,7 +49,6 @@ $('#form-button__note').on('click', '#noteDelBtn', function(event) {
 });
 
 $('.note').click(function () {
-	$('#form-button__note').css({ display: "flex" });
 	const idNote = $(this).attr('data-id');
 	$.getJSON('/notes/'+idNote, function(json) {
 		$('#themeNote')[0].value = json.themeNote;
@@ -57,6 +56,20 @@ $('.note').click(function () {
 		$('#form-button__note').attr('data-id',idNote);
 		$('#noteModal').modal('show');
 	});
+});
+
+$('#noteModal').on('show.bs.modal', function (e) {
+	if ($('#form-button__note').attr('data-id').length) {
+		$('#noteCreate').hide();
+	} else {
+		$('#form-button__note').hide();
+	}
+}).on('hidden.bs.modal', function (e) {
+	$('#themeNote').val("");
+	$('#textNote').val("");
+	$('#noteCreate').show();
+	$('#form-button__note').show();
+	$('#form-button__note').attr('data-id', '');
 });
 
 // -------- Work with lists --------
