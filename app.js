@@ -43,17 +43,17 @@ app.post('/notes', async function(req, res) {
 
 app.post('/lists', async function(req, res) {
     await db.addList(req.body);
-    renderMainPage(res);
+    res.send('Success');
 });
 //edit note
 app.put('/api/notes/:id', function(req, res) {
     db.editNote(req.params.id,req.body.themeNote,req.body.textNote)
-    .then(() => {
-        res.send('Success')
-    })
-    .catch(err => {
-        res.status.json({ err: err });
-    });
+        .then(() => {
+            res.send('Success')
+        })
+        .catch(err => {
+            res.status.json({ err: err });
+        });
 });
 
 app.put('/api/lists/:id', function(req, res) {
