@@ -112,7 +112,7 @@ const editList = async (id, list) => {
         const client = new MongoClient(uri, { useNewUrlParser: true });
         await client.connect();
 
-        const listCollection = await client.db(db).collection("notes");
+        const listCollection = await client.db(db).collection("lists");
         await listCollection.updateOne({"_id": ObjectId(id)}, {$set: list});
         client.close();
 

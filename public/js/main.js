@@ -1,37 +1,37 @@
 //for validation form - boodtrap4
 (function() {
-    'use strict';
-    window.addEventListener('load', function() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      const forms = document.getElementsByClassName('needs-validation');
-      // Loop over them and prevent submission
-      const validation = Array.prototype.filter.call(forms, function(form) {
-        form.addEventListener('submit', function(event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-          form.classList.add('was-validated');
-        }, false);
-      });
-    }, false);
+	'use strict';
+	window.addEventListener('load', function() {
+		// Fetch all the forms we want to apply custom Bootstrap validation styles to
+		const forms = document.getElementsByClassName('needs-validation');
+		// Loop over them and prevent submission
+		const validation = Array.prototype.filter.call(forms, function(form) {
+			form.addEventListener('submit', function(event) {
+				if (form.checkValidity() === false) {
+					event.preventDefault();
+					event.stopPropagation();
+				}
+				form.classList.add('was-validated');
+			}, false);
+		});
+	}, false);
 })();
 
 //ajax for DEL\EDIT
 $('#form-button__note').on('click', '#noteDelBtn', function(event) {
-    event.preventDefault();
+	event.preventDefault();
 	$.ajax({
 		type:'DELETE',
 		url: '/api/notes/' + $('#form-button__note').attr('data-id'),
 		success: function(response){
-		  	window.location.href='/';
+			window.location.href='/';
 		},
 		error: function(err){
-		  console.log(err);
+			console.log(err);
 		}
 	});
 }).on('click', '#noteEditBtn', function(event) {
-  event.preventDefault();
+	event.preventDefault();
 	$.ajax({
 		type:'PUT',
 		url: '/api/notes/' + $('#form-button__note').attr('data-id'),
@@ -40,10 +40,10 @@ $('#form-button__note').on('click', '#noteDelBtn', function(event) {
 			textNote: $('#textNote').val()
 		},
 		success: function(response){
-		  	window.location.href='/';
+			window.location.href='/';
 		},
 		error: function(err){
-		  console.log(err);
+			console.log(err);
 		}
 	});
 });
@@ -137,41 +137,63 @@ $('#delItem').click(function () {
 });
 
 $('#addList').click(function () {
-	/*$.post({
+	$.ajax({
+		type:'POST',
 		url: '/lists',
-		dataType: 'json',
 		data: JSON.stringify({
 			themeList: $('#themeList')[0].value,
-			itemsList: [
-				{
-					itemChecked: true,
-					itemText: 'Item 1'
-				},
-				{
-					itemChecked: false,
-					itemText: 'Item 2'
-				},
-				{
-					itemChecked: true,
-					itemText: 'Item 3'
+			itemsList: Array.prototype.map.call($('#itemsList>.input-group'), function(groupItem) {
+				return {
+					itemChecked: $(groupItem).find('.input-group-text input')[0].checked,
+					itemText: $(groupItem).find('.form-control')[0].value
 				}
-			]
-			/!*itemsList: Array.prototype.forEach.call($('#itemsList>.input-group'), function(groupItem) {
-			})*!/
+			})
 		}),
+		contentType: "application/json",
 		success: function(res){
-			// $('#listModal').modal('hide');
+			$('#listModal').modal('hide');
+			window.location.href='/';
 		},
 		error: function(err){
 			console.err(err);
 		}
-	});*/
+	});
 });
 
 $('#editList').click(function () {
-
+	$.ajax({
+		type:'PUT',
+		url: `/api/lists/${$('#listModal>.modal-dialog>.modal-content').attr('data-id')}`,
+		data: JSON.stringify({
+			themeList: $('#themeList')[0].value,
+			itemsList: Array.prototype.map.call($('#itemsList>.input-group'), function(groupItem) {
+				return {
+					itemChecked: $(groupItem).find('.input-group-text input')[0].checked,
+					itemText: $(groupItem).find('.form-control')[0].value
+				}
+			})
+		}),
+		contentType: "application/json",
+		success: function(res){
+			$('#listModal').modal('hide');
+			window.location.href='/';
+		},
+		error: function(err){
+			console.err(err);
+		}
+	});
 });
 
 $('#delList').click(function () {
-
+	$.ajax({
+		type:'DELETE',
+		url: `/api/lists/${$('#listModal>.modal-dialog>.modal-content').attr('data-id')}`,
+		success: function(res){
+			$('#listModal').modal('hide');
+			window.location.href='/';
+		},
+		error: function(err){
+			console.err(err);
+		}
+	});
 });
